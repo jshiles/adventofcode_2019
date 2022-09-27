@@ -48,7 +48,15 @@ fn fuel_requirements_advanced(mass: i32) -> i32 {
 }
 
 fn main() {
-    let masses_result = read_input("day_01.txt");
+    let project_root_dir = match project_root::get_project_root() {
+        Ok(p) => p,
+        Err(e) =>  panic!("Error obtaining project root {:?}", e)
+    };
+    let input_data_file = format!("{}{}", 
+        project_root_dir.into_os_string().into_string().unwrap(), 
+        "/data/day_01.txt");
+
+    let masses_result = read_input(&input_data_file);
     let masses: Vec<i32> = match masses_result {
         Ok(m) => m,
         Err(error) => panic!("Problem parsing the masses: {:?}", error),
@@ -59,7 +67,7 @@ fn main() {
         .into_iter()
         .map(|n| fuel_requirements(n))
         .sum();
-    println!("{:?}", &fuel_requirement);
+    println!("{:?}", &fuel_requirement); // 3363929
 
 
     // Part 2 - account for the added weight by fuel.
@@ -67,5 +75,5 @@ fn main() {
         .into_iter()
         .map(|n| fuel_requirements_advanced(n))
         .sum();
-    println!("{:?}", &fuel_requirement_p2);
+    println!("{:?}", &fuel_requirement_p2); // 5043026
 }
