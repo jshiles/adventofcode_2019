@@ -118,12 +118,6 @@ fn find_closest_intersection_steps(input1: &str, input2: &str) -> i32 {
 
 
 fn main () {
-    let test_input_1 = "R75,D30,R83,U83,L12,D49,R71,U7,L72";
-    let test_input_2 = "U62,R66,U55,R34,D71,R55,D58,R83";
-    assert_eq!(
-        find_closest_intersection_distance(&test_input_1, &test_input_2),
-        159);
-
     let project_root_dir = match project_root::get_project_root() {
         Ok(p) => p,
         Err(e) =>  panic!("Error obtaining project root {:?}", e)
@@ -146,4 +140,18 @@ fn main () {
     let p2_answer = find_closest_intersection_steps(&input_1_p2, &input_2_p2);
     println!("{:?}", p2_answer);
 
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_find_closest_intersection_distance () {
+        let test_input_1 = "R75,D30,R83,U83,L12,D49,R71,U7,L72";
+        let test_input_2 = "U62,R66,U55,R34,D71,R55,D58,R83";
+        assert_eq!(
+            find_closest_intersection_distance(&test_input_1, &test_input_2),
+            159);
+    }
 }

@@ -61,15 +61,6 @@ fn valid_password_extended(password: u32) -> bool {
 }
 
 fn main() {
-    // Run some supplied tests
-    assert_eq!(true, valid_password(111111));
-    assert_eq!(false, valid_password(223450));
-    assert_eq!(false, valid_password(123789));
-    assert_eq!(false, valid_password_extended(111111));
-    assert_eq!(true, valid_password_extended(112233));
-    assert_eq!(false, valid_password_extended(123444));
-    assert_eq!(true, valid_password_extended(111122));
-
     /*
     part 1: How many valid passwords are there within the range 123257-647015
     according the base logic?
@@ -93,4 +84,25 @@ fn main() {
         }
     }
     println!("Valid codes (part 2): {:?}", count); // 1515
+}
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_valid_password () {
+        assert_eq!(true, valid_password(111111));
+        assert_eq!(false, valid_password(223450));
+        assert_eq!(false, valid_password(123789));
+    }
+
+    #[test]
+    fn test_valid_password_extended () {
+        assert_eq!(false, valid_password_extended(111111));
+        assert_eq!(true, valid_password_extended(112233));
+        assert_eq!(false, valid_password_extended(123444));
+        assert_eq!(true, valid_password_extended(111122));
+    }
 }

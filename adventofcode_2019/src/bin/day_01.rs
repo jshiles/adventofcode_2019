@@ -77,3 +77,21 @@ fn main() {
         .sum();
     println!("{:?}", &fuel_requirement_p2); // 5043026
 }
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_fuel_requirements_basic () {
+        assert_eq!(654, fuel_requirements(1969));
+        assert_eq!(33583, fuel_requirements(100756));
+    }
+
+    #[test]
+    fn test_fuel_requirements_advanced () {
+        assert_eq!(966, fuel_requirements_advanced(1969));
+        assert_eq!(50346, fuel_requirements_advanced(100756));
+    }
+}
